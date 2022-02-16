@@ -1,6 +1,6 @@
-def func(I):
+def func(x):
     global area
-    string = line
+    string = x
     size = string.split('x')
     l = int(size[0])
     w = int(size[1])
@@ -17,7 +17,10 @@ with open('input.txt', 'r') as I:
     for line in I:
         func(line)
 
+output = open('output1.txt', 'w')
+output.write(str(area))
+output.close()
 print('Площадь обёрточной бумаги, которую нужно заказать: '+ str(area) + ' футов^2')
 
-
+input()
     
