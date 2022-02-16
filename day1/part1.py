@@ -54,9 +54,6 @@ while True:
         else:
             FloorUp = text.count('(')
             FloorDown = text.count(')')
-            print(FloorUp)
-            print(FloorDown)
-            print(len(text))
             if len(text) == (FloorUp + FloorDown):
                 raise FinalException(FloorUp - FloorDown)
             else:
@@ -72,7 +69,7 @@ while True:
     except EndException:
         break
 
-print('Спасибо за помощь Санте! До встречи в следующем году! Хоу-хоу-хоу...')
+print('Спасибо за помощь Санте! До встречи! Хоу-хоу-хоу...')
 t.sleep(5)
 sys.exit(1)
         
