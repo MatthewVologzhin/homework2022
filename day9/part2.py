@@ -33,7 +33,7 @@ for element in perm:
                 dist += int(array[j][2])
     dist_array.append(dist)
 
-#Самый короткий путь (из-за него немного дольше ищет)
+#Самый длинный путь (из-за него немного дольше ищет)
     if dist <= max(dist_array):
         max_way = element
 
