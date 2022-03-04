@@ -25,15 +25,15 @@ letter_dict = {x[1]: x[0] for x in start_element}
 for i in range(len(array)):
     for element in array:
 
-        if element[1] == 'RSHIFT' and element[0] in letter_dict.keys():
+        if (element[1] == 'RSHIFT') and (element[0] in letter_dict.keys()):
             values = int(letter_dict.get(element[0])) >> int(element[2])
             letter_dict.update({element[-1]: values})
 
-        elif element[1] == 'LSHIFT' and element[0] in letter_dict.keys():
+        elif (element[1] == 'LSHIFT') and (element[0] in letter_dict.keys()):
             values = int(letter_dict.get(element[0])) << int(element[2])
             letter_dict.update({element[-1]: values})
 
-        elif element[1] == 'NOT' and element[0] in letter_dict.keys():
+        elif (element[1] == 'NOT') and (element[0] in letter_dict.keys()):
             values = ~int(letter_dict.get(element[0]))
             letter_dict.update({element[-1]: values})
 
@@ -59,7 +59,7 @@ for i in range(len(array)):
                 values = int(letter_dict.get(element[0])) & int(element[2])
                 letter_dict.update({element[-1]: values})
         elif len(element) == 2 and element[0].isalpha() and element[0] in letter_dict.keys():
-            values = letter_dict.get(element[0])
+            values = int(letter_dict.get(element[0]))
             letter_dict.update({element[1]: values})
 
 with open('output1.txt', 'w') as OUTPUT:

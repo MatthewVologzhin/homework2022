@@ -42,8 +42,9 @@ def score(start_element, array):
                     values = int(letter_dict.get(element[0])) & int(element[2])
                     letter_dict.update({element[-1]: values})
             elif len(element) == 2 and element[0].isalpha() and element[0] in letter_dict.keys():
-                values = letter_dict.get(element[0])
+                values = int(letter_dict.get(element[0]))
                 letter_dict.update({element[1]: values})
+    print(letter_dict)
     return letter_dict.get('a')
 
 # Преобразуем строки в нужный вид
@@ -58,11 +59,15 @@ with open('input.txt', 'r') as INPUT:
 start_element = []
 for element in array:
     if element[0].isdigit() and len(element) == 2:
-        start_element.append(element)
+        if element[1] == 'b':
+            start_element.insert(0, element)
+        else:
+            start_element.append(element)
         
     if element[0] == 'NOT':
         element[0] = element[1]
         element[1] = 'NOT'
+
 
 # Первый расчёт
 a = score(start_element, array)
