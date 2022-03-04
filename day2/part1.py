@@ -21,6 +21,3 @@ output = open('output1.txt', 'w')
 output.write(str(area))
 output.close()
 print('Площадь обёрточной бумаги, которую нужно заказать: '+ str(area) + ' футов^2')
-
-input()
-    

@@ -17,9 +17,3 @@ with open("input.txt", 'r') as INPUT:
 with open('output2.txt', 'w') as OUTPUT:
     OUTPUT.write(str(answer))
 
-input()
-        
-        
-
-    
-    

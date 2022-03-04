@@ -17,7 +17,6 @@ with open("input.txt", 'r') as INPUT:
 with open('output1.txt', 'w') as OUTPUT:
     OUTPUT.write(str(answer))
         
-input()
 
     
     

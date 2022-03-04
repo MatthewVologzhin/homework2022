@@ -50,5 +50,3 @@ output = open('output2.txt', 'w')
 output.write(str(len(HMHomes_list)))
 output.close()
     
-
-input()

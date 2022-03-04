@@ -6,8 +6,9 @@ print('Труд - это хорошо, но и об отдыхе не нужно
       '\n Давайте удивим их, как быстро мы можем находить решение' +
       '\n на несколько шагов вперёд.')
 
-HMSteps = int(input('Количество шагов вычислений: '))
-for counter in range(HMSteps):
+#HMSteps = int(input('Количество шагов вычислений: '))
+#for counter in range(HMSteps):
+for counter in range(40):
     array = [element for element in line]
     HMNumb = 1
     new_array = []

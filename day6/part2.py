@@ -51,6 +51,3 @@ with open('output2.txt','w') as OUTPUT:
             
 print('Сейчас нас освещает фонари мощностью {} единиц!'.format(HBrightness))
 
-input()
-        
-

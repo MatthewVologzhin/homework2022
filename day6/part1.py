@@ -61,5 +61,4 @@ with open('map_of_lights.txt', 'w') as map:
             
 print('Санта зажёг {} фонарей!'.format(HMLights))
 
-input()
         

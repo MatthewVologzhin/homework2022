@@ -65,4 +65,3 @@ print('Всего строк:', Score)
 with open('output1.txt', 'w') as OUTPUT:
     OUTPUT.write(str(nice_strings))
 
-input()

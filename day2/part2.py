@@ -20,6 +20,3 @@ output = open('output2.txt', 'w')
 output.write(str(length))
 output.close()
 print('Длина ленты, которую нужно заказать: '+ str(length) + ' футов^2')
-
-input()
-    

@@ -28,4 +28,3 @@ print('Санта посетил ' + str(len(array)) + ' дома за ночь!
 
 with open('output1.txt','w') as output:
     output.write(str(len(array)))
-input()
