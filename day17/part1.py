@@ -23,7 +23,7 @@ for i in range(1,len(volumes)):
 number = len(sum_array)
 print('Всего %s способа разлить %d литров напитка!'\
       %(number,liters))
-with open('output2.txt','w') as OUTPUT:
+with open('output1.txt','w') as OUTPUT:
     OUTPUT.write(str(len(sum_array)))
 
     
