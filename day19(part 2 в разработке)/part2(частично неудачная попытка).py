@@ -49,7 +49,7 @@ with open('input.txt','r') as INPUT:
             array.append(line)
         else:
             main_moleculs = line
-array.sort(key=lambda x: len(x), reverse = True)
+array.sort(key=lambda x: len(x[1]), reverse = True)
 print(array)
 
 

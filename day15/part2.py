@@ -1,5 +1,4 @@
 from itertools import dropwhile, combinations
-import numpy as np
 
 print('Изучаем количественные соотношения ингредиентов\n\
        для чуть менее ВЕЛИКОЛЕПНОГО, но более СЫТНОГО печенья...\n')
@@ -26,8 +25,6 @@ array = new_array
 calories = []
 for i in range(len(array)):
     calories.append(array[i][-1])
-calories = np.array(calories)
-calories = calories.transpose()
 
 #Просчитываем все возможные комбинации
 comb_array = []
@@ -47,9 +44,8 @@ for i in range(len(array)):
 array = new_array
 new_array = []
 for i in range(len(array)):
-    new_array.append(np.array(array[i]))
-for i in range(len(new_array)):
-    new_array[i] = new_array[i].transpose()
+    new_array.append(array[i])
+
 array = new_array
 new_array = []
 
@@ -59,11 +55,20 @@ check_array = []
 ch_array = []
 for element in comb_array:
     for ar in array:
-        SUM = ar.dot(np.array(element))
+        SUM = 0
+        for i in range(len(element)):
+            SUM += ar[i]*element[i]
         if  SUM < 0:
             SUM = 0
-        elif calories.dot(np.array(element)) != 500:
+###### Изменённый фрагмент ######
+        SUM2 = 0
+        for i in range(len(element)):
+            SUM2 += calories[i]*element[i]
+        if SUM2 != 500:
             SUM = 0
+# Как интересно, однако... 2 месяца назад мне казалось это... #
+# ... более неприятной и сложной задачей, но как же приятно... #
+# ... возвращаться и быстро всё исправлять :) #
         check_array.append(SUM)
         produce *= SUM
     ch_array.append(check_array)

@@ -1,5 +1,4 @@
 from itertools import dropwhile, combinations
-import numpy as np
 
 print('Изучаем количественные соотношения ингредиентов для ВЕЛИКОЛЕПНОГО печенья...\n')
 
@@ -38,9 +37,7 @@ for i in range(len(array)):
 array = new_array
 new_array = []
 for i in range(len(array)):
-    new_array.append(np.array(array[i]))
-for i in range(len(new_array)):
-    new_array[i] = new_array[i].transpose()
+    new_array.append(array[i])
 array = new_array
 new_array = []
 
@@ -48,9 +45,12 @@ some_list = []
 produce = 1
 check_array = []
 ch_array = []
+
 for element in comb_array:
     for ar in array:
-        SUM = ar.dot(np.array(element))
+        SUM = 0
+        for i in range(len(element)):
+            SUM += ar[i]*element[i]
         if  SUM < 0:
             SUM = 0
         check_array.append(SUM)
