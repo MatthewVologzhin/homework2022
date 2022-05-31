@@ -2,7 +2,11 @@ print('Изучаем разные варианты построения мол�
 
 from random import shuffle,randint
 from re import split as spl
+import time
+import sys
+sys.setrecursionlimit(10000)
 
+#Получение данных из "input.txt"
 with open('input.txt','r') as INPUT:
     array = []
     for line in INPUT:
@@ -12,44 +16,58 @@ with open('input.txt','r') as INPUT:
             line = line.split(' ')
             array.append(line)
         else:
-            main_moleculs = line
-array.sort(key=lambda x: len(x[1]), reverse = True)
+            main_molecule = line
+################################
 
-def minimize(main, array):
-    try:
-        while True:
-            moleculs = main
-            counter = 0
+
+
+#Сортировка#
+for element in array:
+    counter = 0
+    for el in element[1]:
+        if el.isupper() == True:                  #Считаем кол-во заглавных символов 
+            counter += 1
+    element.append(counter)
+array.sort(key = lambda x: x[2], reverse = True)  #Сортируем список по убыванию заглавных символов
+
+for element in array:                             #Избавляемся от ненужных последних значений кол-ва заглавных символов
+    element.remove(element[-1])
+############
+
+
+
+#Главная функция#
+def minimize(molecule, array, last = [],switcher = 0):
+    if switcher == 1:              #Переключатель: 1 - если прошёл цикл без изменений
+        last1 = last.copy()        #Копирование списка для передачи аргумента без его потери (цикл продолжится с X, а не с 0)
+        x = last1[-1][1]  
+    elif switcher == 0:            #Если переключатель = 0 - цикл идёт впервые
+        x = 0
+    else:                          #Условие для непредвиденных обстоятельств со switcher'ом
+        print('so intresting...')
+    for i in range(x, len(array)): #Цикл, который проходится по индексам трансфораций в array (от X, которая определяется switcher'ом до длины array)
+        if switcher == 1:              #Если switcher = 1, то удаляется посленднее значение last и переключатель изменяется на 0
             switcher = 0
-            moleculs1 = None
-            moleculs2 = 0
-            while moleculs1 != moleculs2:
-                counter += 1
-                shuffle(array)
-                for trans in array:
-                    if trans[1] in moleculs:
-                        moleculs = spl(trans[1], moleculs)
-                        print(moleculs)
-                        if len(moleculs) == 1:
-                            continue
-                        A = randint(1,len(moleculs)-1)
-                        for i in range(1,2*len(moleculs)-1,2):
-                            moleculs.insert(i,trans[1])
-                        moleculs[2*A-1] = trans[0]
-                        moleculs = ''.join(moleculs)    
-                        if moleculs == 'e':
-                            print(1)
-                            raise ZeroDivisionError
-                        break
-                if switcher == 1:
-                    break
-                if moleculs1 == None:
-                    moleculs1 = moleculs
-                else:
-                    moleculs2 = moleculs
-                    switcher = 1
-    except ZeroDivisionError:
-        print(counter)
-        print('Nice')
-minimize(main_moleculs, array)
+            last.remove(last[-1])
+            continue
+        if array[i][1] in molecule:    #Условие вхождения трансформации в молекулу
 
+            last.append([molecule, i])     #Добавление последнего 1."хорошего" вида молекулы и 2.номер трансформации
+            
+            n = molecule.find(array[i][1])                                            #| 
+            molecule = molecule[:n] + array[i][0] + molecule[n+len(array[i][1]):]     #|   Преобразование молекулы к новому виду
+            print(molecule)                                                           #|
+
+            return minimize(molecule, array, last) #Запускаем рекурсию с новыми параметрами
+        
+    if molecule == 'e':      #Условие, при котором, если возникает молекула с электроном, то возвращается длина "хороших" последовательностей молекул
+        return len(last)
+    
+    switcher = 1             #Если при прохождении цикла не было совпадений с трансформациями, то swticher = 1
+    return minimize(last[-1][0], array, last, switcher)  #Рекурсия с новым параметром switcher = 1
+#################
+
+
+
+a = minimize(main_molecule,array)
+print(a)
